@@ -1,7 +1,7 @@
 :root{
   --bg:#120d10;--panel:#1d1519;--panel2:#261c21;--line:#3a2b32;--fg:#f4ece4;--muted:#b5a59c;
   --gold:#e5b85c;--red:#b3283a;--ok:#4f9d69;--bad:#c4473a;
-  --c0:#e5b85c;--c1:#e0607e;--c2:#6fb3d9;--c3:#8bc78a;--c4:#c39be0;
+  --c0:#e5b85c;--c1:#6cc287;--c2:#f08bb8;--c3:#e5484d;--c4:#c98a4b;
   --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
