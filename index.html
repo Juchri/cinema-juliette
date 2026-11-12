@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le ciné en famille · 2019 → 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">Le carnet de Pilou, Zabou, Juju, Popo &amp; Coco</p>
+  <h1>Le ciné en famille</h1>
+  <p class="dates">2019 → 2026</p>
+  <p class="lead" id="lead">Chargement du carnet…</p>
+  <nav class="nav">
+    <a href="#chiffres">Chiffres</a><a href="#podiums">Podiums</a><a href="#portraits">Portraits</a><a href="#annees">Années</a><a href="#affinites">Affinités</a><a href="#carnet">Le carnet</a>
+  </nav>
+</header>
+
+<main>
+  <section id="chiffres" class="tiles"></section>
+
+  <section id="podiums">
+    <h2>Le panthéon</h2>
+    <p class="sub">Meilleures moyennes, parmi les films notés par au moins 3 personnes.</p>
+    <div class="podium" id="podium-top"></div>
+    <ol class="rest" id="rest-top" start="4"></ol>
+
+    <h2>Les films qui divisent</h2>
+    <p class="sub">Le plus grand écart entre la meilleure et la pire note (au moins 3 personnes).</p>
+    <div class="podium" id="podium-div"></div>
+    <ol class="rest" id="rest-div" start="4"></ol>
+
+    <h2>Les flops</h2>
+    <p class="sub">Les moyennes les plus basses (au moins 3 personnes).</p>
+    <div class="podium" id="podium-flop"></div>
+    <ol class="rest" id="rest-flop" start="4"></ol>
+  </section>
+
+  <section id="portraits">
+    <h2>Le portrait de chaque critique</h2>
+    <p class="sub">« Écart aux autres » : sur les films vus ensemble, de combien la note de la personne dépasse (ou reste sous) la moyenne des autres.</p>
+    <div class="people" id="people"></div>
+  </section>
+
+  <section id="annees" class="two">
+    <div>
+      <h2>Combien de films par an</h2>
+      <p class="sub">2026 n’est pas encore fini.</p>
+      <div class="chart" id="ch-films"></div>
+    </div>
+    <div>
+      <h2>La moyenne de chacun, année par année</h2>
+      <p class="sub">Tracée à partir de 3 films notés dans l’année.</p>
+      <div class="chart" id="ch-avg"></div>
+    </div>
+  </section>
+
+  <section id="distribution">
+    <h2>Quelles notes chacun distribue</h2>
+    <p class="sub">Part de chaque note, de 1 à 10.</p>
+    <div class="mini" id="ch-dist"></div>
+  </section>
+
+  <section id="affinites" class="two">
+    <div>
+      <h2>Qui pense comme qui ?</h2>
+      <p class="sub">Écart moyen entre deux personnes sur leurs films en commun. Plus c’est foncé, plus elles sont d’accord.</p>
+      <div class="chart" id="ch-pairs"></div>
+    </div>
+    <div>
+      <h2>Le détail des duos</h2>
+      <p class="sub">Du plus au moins en phase.</p>
+      <div class="wrap"><table id="t-pairs"><thead><tr><th>Duo</th><th class="n">Films en commun</th><th class="n">Écart moyen</th><th class="n">Même note</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="reunis" class="two">
+    <div>
+      <h2>Quand les cinq étaient réunis</h2>
+      <p class="sub">Les films notés par toute la famille.</p>
+      <div class="wrap"><table id="t-all5"><thead><tr><th>Film</th><th>Année</th><th class="n">Pi</th><th class="n">Za</th><th class="n">Ju</th><th class="n">Po</th><th class="n">Co</th><th class="n">Moy.</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div>
+      <h2>Les séances en solo de Juju</h2>
+      <p class="sub">Les films où Juju est la seule à noter.</p>
+      <div class="wrap"><table id="t-solo"><thead><tr><th>Film</th><th>Année</th><th class="n">Note</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="carnet">
+    <h2>Tout le carnet</h2>
+    <p class="sub">Vert : 9 ou 10. Rouge : 4 ou moins. 💤 : endormissement.</p>
+    <div class="controls">
+      <select id="f-year" aria-label="Année"><option value="">Toutes les années</option></select>
+      <input id="f-q" type="search" placeholder="Chercher un film…" aria-label="Chercher un film">
+    </div>
+    <div class="wrap scroll"><table id="t-all"><thead><tr><th>Année</th><th>Film</th><th class="n">Pilou</th><th class="n">Zabou</th><th class="n">Juju</th><th class="n">Popo</th><th class="n">Coco</th><th class="n">Moy.</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <details class="methode">
+    <summary>Comment le carnet a été lu</summary>
+    <p>Les notes sont lues dans l’ordre Pilou, Zabou, Juju, Popo, Coco. Une ligne de moins de cinq chiffres sans tirets remplit les premières places. Tiret, « _ », « ns », « n » et l’astérisque (endormissement) = pas de note. Les chiffres collés sont séparés (« 88988 » = 8 8 9 8 8) et les nombres des titres (Avatar 2, F1, Mickey 17…) restent dans le titre.</p>
+    <p>Affiches : chargées depuis Wikipédia au moment de la visite. Il peut arriver qu’une affiche manque ou ne soit pas la bonne pour un film très récent.</p>
+  </details>
+</main>
+<footer>Fait avec amour et pop-corn · mis à jour le <span id="maj"></span></footer>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="posters.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
