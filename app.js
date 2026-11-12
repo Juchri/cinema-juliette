@@ -81,6 +81,33 @@
   podium('#podium-div', '#rest-div', DIV, (f) => String(f.ecart), 'pts d’écart');
   podium('#podium-flop', '#rest-flop', FLOP, (f) => f1(f.moyenne), '/10');
 
+  // ---------- Classement des cinéphiles ----------
+  const VUS = P.map((p, i) => {
+    const seen = F.filter((f) => f.notes[i] !== null || f.endormi === p);
+    const parAn = {}; YEARS.forEach((y) => { parAn[y.annee] = seen.filter((f) => f.annee === y.annee).length; });
+    return {p, n: seen.length, siestes: F.filter((f) => f.endormi === p).length, parAn};
+  }).sort((a, b) => b.n - a.n);
+  const medals = ['🥇', '🥈', '🥉'];
+  const maxVus = VUS[0].n;
+  VUS.forEach((v, k) => {
+    const r = el('div', 'rk');
+    const bar = el('div', 'bar'); const fill = el('span'); fill.style.background = col(v.p); bar.appendChild(fill);
+    const val = el('div', 'val'); val.appendChild(el('b', null, String(v.n)));
+    val.appendChild(el('small', null, Math.round(100 * v.n / F.length) + ' % des films' + (v.siestes ? ` · ${v.siestes} 💤` : '')));
+    r.append(el('div', 'pos', medals[k] || String(k + 1)), el('div', 'nm', v.p), bar, val);
+    $('#ranking').appendChild(r);
+    requestAnimationFrame(() => requestAnimationFrame(() => { fill.style.width = (100 * v.n / maxVus) + '%'; }));
+  });
+  const thy = el('tr'); thy.appendChild(el('th', null, 'Films vus')); YEARS.forEach((y) => thy.appendChild(el('th', 'n', String(y.annee)))); thy.appendChild(el('th', 'n', 'Total'));
+  $('#t-years thead').appendChild(thy);
+  VUS.forEach((v) => {
+    const tr = el('tr'); tr.appendChild(el('td', null, v.p));
+    YEARS.forEach((y) => { const n = v.parAn[y.annee]; const best = Math.max(...VUS.map((w) => w.parAn[y.annee])); tr.appendChild(el('td', n === best && n > 0 ? 'n hi' : n ? 'n' : 'n mu', n ? String(n) : '–')); });
+    tr.appendChild(el('td', 'n tot', String(v.n))); $('#t-years tbody').appendChild(tr);
+  });
+  const trT = el('tr'); trT.appendChild(el('td', 'mu', 'Films de l’année')); YEARS.forEach((y) => trT.appendChild(el('td', 'n mu', String(y.films)))); trT.appendChild(el('td', 'n mu', String(F.length)));
+  $('#t-years tbody').appendChild(trT);
+
   // ---------- Portraits ----------
   PEOPLE.forEach((x) => {
     const c = el('div', 'person'); c.style.setProperty('--pc', col(x.p));
