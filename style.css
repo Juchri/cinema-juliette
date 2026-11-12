@@ -82,7 +82,20 @@ section#podiums h2:not(:first-child){margin-top:56px}
 .rest .score{font-family:var(--serif);font-size:1.3rem;color:var(--gold);text-align:right}
 .rest .score small{display:block;font-size:.7rem;color:var(--muted);font-family:var(--sans)}
 
-.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.ph-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ph-head h3{margin:0}
+.cnt b{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:600}
+.cnt span{color:var(--muted);font-size:.85rem}
+.cnt-sub{text-align:right;color:var(--muted);font-size:.75rem;margin:-2px 0 12px}
+.pl-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.pl h4{margin:0 0 8px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.pl ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pl li{display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:center}
+.pl .thumb{width:34px}
+.pl .t{font-size:.82rem;line-height:1.2}
+.pl .y{font-size:.7rem;color:var(--muted)}
+.pl .nt{font-family:var(--serif);font-size:1.15rem;color:var(--pc)}
 .person{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;border-top:4px solid var(--pc)}
 .person h3{font-family:var(--serif);font-size:1.35rem;margin:0 0 10px}
 .person dl{display:grid;grid-template-columns:auto 1fr;gap:5px 10px;margin:0;font-size:.85rem}
