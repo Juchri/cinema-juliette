@@ -17,9 +17,12 @@
   }).filter((f) => f.nb > 0);
   const allNotes = F.flatMap((f) => f.notes.filter((x) => x !== null));
   const M3 = F.filter((f) => f.nb >= 3);
-  const TOP = M3.slice().sort((a, b) => b.moyenne - a.moyenne || b.nb - a.nb).slice(0, 10);
-  const FLOP = M3.slice().sort((a, b) => a.moyenne - b.moyenne || b.nb - a.nb).slice(0, 8);
-  const DIV = M3.slice().sort((a, b) => b.ecart - a.ecart || b.nb - a.nb).slice(0, 8);
+  // À note égale (au dixième affiché) : le plus de personnes, puis le plus récent.
+  const r1 = (x) => Math.round(x * 10) / 10;
+  const departage = (a, b) => b.nb - a.nb || b.annee - a.annee || a.id - b.id;
+  const TOP = M3.slice().sort((a, b) => r1(b.moyenne) - r1(a.moyenne) || departage(a, b)).slice(0, 10);
+  const FLOP = M3.slice().sort((a, b) => r1(a.moyenne) - r1(b.moyenne) || departage(a, b)).slice(0, 8);
+  const DIV = M3.slice().sort((a, b) => b.ecart - a.ecart || departage(a, b)).slice(0, 8);
 
   const PEOPLE = P.map((p, i) => {
     const mine = F.filter((f) => f.notes[i] !== null), v = mine.map((f) => f.notes[i]);
