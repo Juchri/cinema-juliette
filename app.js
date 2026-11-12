@@ -84,6 +84,17 @@
   podium('#podium-div', '#rest-div', DIV, (f) => String(f.ecart), 'pts d’écart');
   podium('#podium-flop', '#rest-flop', FLOP, (f) => f1(f.moyenne), '/10');
 
+  // ---------- Pépites en solo ----------
+  F.filter((f) => f.nb === 1).map((f) => { const i = f.notes.findIndex((x) => x !== null); return {f, i, n: f.notes[i]}; })
+    .sort((a, b) => b.n - a.n || b.f.annee - a.f.annee || a.f.id - b.f.id).slice(0, 10)
+    .forEach(({f, i, n}) => {
+      const li = el('li'); const th = el('div', 'thumb'); poserAffiche(th, f.titre, f.annee);
+      const mid = el('div'); mid.append(el('span', 't', f.titre), el('span', 'y', String(f.annee) + (f.sortie ? ' · reprise (' + f.sortie + ')' : '')));
+      const ch = el('div', 'chips'); const s = el('span', 'chip'); const d = el('i'); d.style.background = col(P[i]); s.append(d, 'vu par ' + P[i]); ch.appendChild(s); mid.appendChild(ch);
+      const sc = el('div', 'score', String(n)); sc.appendChild(el('small', null, '/10'));
+      li.append(th, mid, sc); $('#rest-solo').appendChild(li);
+    });
+
   // ---------- Profils ----------
   const medals = ['🥇', '🥈', '🥉'];
   const VUS = P.map((p, i) => F.filter((f) => f.notes[i] !== null || f.endormi === p).length);
@@ -227,7 +238,6 @@
   PAIRS.forEach((r) => $('#t-pairs tbody').appendChild(row([[r.a + ' & ' + r.b], [r.n, 'n'], [f2(r.ecart), 'n'], [Math.round(r.same * 100) + ' %', 'n']])));
   F.filter((f) => f.nb === 5).sort((a, b) => b.moyenne - a.moyenne).forEach((f) =>
     $('#t-all5 tbody').appendChild(row([[f.titre], [f.annee], ...f.notes.map((x) => [x, cls(x)]), [f1(f.moyenne), 'n']])));
-  F.filter((f) => f.nb === 1 && f.notes[2] !== null).forEach((f) => $('#t-solo tbody').appendChild(row([[f.titre], [f.annee], [f.notes[2], cls(f.notes[2])]])));
 
   const ys = Array.from(new Set(F.map((f) => f.annee))).sort().reverse();
   ys.forEach((y) => $('#f-year').appendChild(new Option(y, y)));

@@ -37,6 +37,7 @@ section#podiums h2:not(:first-child){margin-top:56px}
 .rk .val b{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:600}
 .rk .val small{display:block;color:var(--muted);font-size:.72rem}
 #t-years td:first-child{font-weight:500}#t-years td.tot{font-weight:600;color:var(--gold)}
+.rest.solo{counter-reset:r 0;margin-top:0}
 /* Suggestions */
 .sugg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .sg{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--pc);border-radius:14px;padding:16px}
