@@ -212,7 +212,7 @@
   // ---------- Suggestions ----------
   P.forEach((p, i) => {
     const cand = F.filter((f) => f.notes[i] === null && f.endormi !== p && f.moyenne >= 7 && (f.sortie || f.annee) >= 2019)
-      .sort((a, b) => (b.nb >= 2) - (a.nb >= 2) || r1(b.moyenne) - r1(a.moyenne) || departage(a, b)).slice(0, 3);
+      .sort((a, b) => (b.nb >= 2) - (a.nb >= 2) || r1(b.moyenne) - r1(a.moyenne) || departage(a, b)).slice(0, 5);
     const card = el('div', 'sg'); card.style.setProperty('--pc', col(p));
     const h = el('h3', null, p); h.appendChild(el('small', null, 'À voir absolument')); card.appendChild(h);
     if (!cand.length) { card.appendChild(el('p', 'empty', 'Rien à rattraper : ' + p + ' a tout vu !')); }
