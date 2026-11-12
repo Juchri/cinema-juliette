@@ -85,7 +85,7 @@
   podium('#podium-flop', '#rest-flop', FLOP, (f) => f1(f.moyenne), '/10');
 
   // ---------- Pépites en solo ----------
-  F.filter((f) => f.nb === 1).map((f) => { const i = f.notes.findIndex((x) => x !== null); return {f, i, n: f.notes[i]}; })
+  F.filter((f) => f.nb === 1 && (f.sortie || f.annee) >= 2019).map((f) => { const i = f.notes.findIndex((x) => x !== null); return {f, i, n: f.notes[i]}; })
     .sort((a, b) => b.n - a.n || b.f.annee - a.f.annee || a.f.id - b.f.id).slice(0, 10)
     .forEach(({f, i, n}) => {
       const li = el('li'); const th = el('div', 'thumb'); poserAffiche(th, f.titre, f.annee);
