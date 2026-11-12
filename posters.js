@@ -42,7 +42,8 @@ window.INDICES = {
   "La la land|2025": ["en", "La La Land film Chazelle"],
   "La pampa|2025": ["fr", "La Pampa film Antoine Chevrollier"],
   "Une affaire d’honneur|2023": ["fr", "Une affaire d'honneur film Vincent Perez"],
-  "Wicked|2025": ["en", "Wicked 2024 film Jon M. Chu"]
+  "Wicked|2025": ["en", "Wicked 2024 film Jon M. Chu"],
+  "Wicked : Partie II|2025": ["en", "Wicked: For Good film"]
 };
 
 (function () {
