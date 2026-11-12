@@ -209,6 +209,23 @@
   drawAll();
   let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
 
+  // ---------- Suggestions ----------
+  P.forEach((p, i) => {
+    const cand = F.filter((f) => f.notes[i] === null && f.endormi !== p && f.moyenne >= 7)
+      .sort((a, b) => (b.nb >= 2) - (a.nb >= 2) || r1(b.moyenne) - r1(a.moyenne) || departage(a, b)).slice(0, 3);
+    const card = el('div', 'sg'); card.style.setProperty('--pc', col(p));
+    const h = el('h3', null, p); h.appendChild(el('small', null, 'À voir absolument')); card.appendChild(h);
+    if (!cand.length) { card.appendChild(el('p', 'empty', 'Rien à rattraper : ' + p + ' a tout vu !')); }
+    const ul = el('ul');
+    cand.forEach((f) => {
+      const li = el('li'); const th = el('div', 'thumb'); poserAffiche(th, f.titre, f.annee);
+      const tx = el('div'); tx.append(el('div', 't', f.titre + ' (' + f.annee + ')'));
+      const m = el('div', 'm'); m.append(el('b', null, f1(f.moyenne)), ' · ' + f.notes.map((x, k) => x === null ? null : P[k] + ' ' + x).filter(Boolean).join(', '));
+      tx.appendChild(m); li.append(th, tx); ul.appendChild(li);
+    });
+    card.appendChild(ul); $('#sugg').appendChild(card);
+  });
+
   // ---------- Tableaux ----------
   const cls = (v) => v === null ? 'n mu' : v >= 9 ? 'n hi' : v <= 4 ? 'n lo' : 'n';
   const row = (cells) => { const tr = el('tr'); cells.forEach(([t, c]) => tr.appendChild(el('td', c, String(t)))); return tr; };

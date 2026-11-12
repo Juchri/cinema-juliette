@@ -38,7 +38,11 @@ window.INDICES = {
   "Babylon|2022": ["en", "Babylon 2022 film Chazelle"],
   "Marty Suprême|2026": ["en", "Marty Supreme film"],
   "Les 3 mousquetaires|2024": ["en", "The Three Musketeers: Milady"],
-  "Les fantômes|2024": ["en", "Ghost Trail 2024 film Les Fantômes"]
+  "Les fantômes|2024": ["en", "Ghost Trail 2024 film Les Fantômes"],
+  "La la land|2025": ["en", "La La Land film Chazelle"],
+  "La pampa|2025": ["fr", "La Pampa film Antoine Chevrollier"],
+  "Une affaire d’honneur|2023": ["fr", "Une affaire d'honneur film Vincent Perez"],
+  "Wicked|2025": ["en", "Wicked 2024 film Jon M. Chu"]
 };
 
 (function () {
